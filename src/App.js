@@ -7,7 +7,7 @@ import LogoutButton from './components/LogoutButton';
 import CreateBlog from './components/CreateBlog';
 import Notification from './components/Notification';
 import Toggleable from './components/Toggleable';
-import {  addAllBlogs, addBlog, deleteBlog, updateBlog } from './features/blogRedux';
+import {  addAllBlogs, addBlog, deleteBlog, updateBlog, addLike } from './features/blogRedux';
 import blogService from './services/blogs'
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
   const [notification, setNotification] = useState(null);
   const [className, setClassName] = useState(null);
 
-  console.log(blogs)
+
 
   useEffect(() => {
      blogService
@@ -42,9 +42,9 @@ const App = () => {
 
   const likeButtonClick = async (id, blogObj) => {
     try {
-      const addLike = await blogService
+      const likedBlog = await blogService
         .update(id, blogObj);
-       dispatch(addLike({ id, addLike }));
+       dispatch(addLike(likedBlog));
       setNotification(`You liked this blog`);
       setClassName('notification-success');
     } catch (error) {
@@ -52,12 +52,13 @@ const App = () => {
       setClassName('notification-error');
     } finally {
       setTimeout(() => setNotification(null), 3000);
+      console.log('hi')
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      await dispatch(deleteBlog(id));
+       dispatch(deleteBlog(id));
       setNotification('You deleted this blog');
       setClassName('notification-success');
     } catch (error) {

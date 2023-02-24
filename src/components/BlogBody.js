@@ -5,8 +5,16 @@ const BlogBody = ({ blog, addLike, deleteBlog }) => {
 
     const clickLike = (e) => {
         e.preventDefault();
-        blog.likes++;
-        addLike(blog.id, blog);
+        console.log(blog)
+        const updateObj = {
+            title: blog.title,
+            author: blog.author,
+            url: blog.url,
+            likes: blog.likes + 1,
+            id: blog.id
+        }
+        
+        addLike(blog.id, updateObj);
     }
 
     const removeBlog = (e) => {
