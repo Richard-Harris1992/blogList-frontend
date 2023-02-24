@@ -13,7 +13,8 @@ const blogSlice = createSlice({
       state.concat(action.payload);
     },
     deleteBlog: (state, action) => {
-      return state.filter(blog => blog.id !== action.payload.id);
+      const newArray = state.filter(blog => blog.id !== action.payload.id);
+      return newArray.sort((a,b) => b.likes - a.likes)
     },
     updateBlog: (state, action) => {
       const index = state.findIndex(blog => blog.id === action.payload.id);
