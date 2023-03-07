@@ -1,5 +1,5 @@
 
-// app/features/blogSlice.js
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const blogSlice = createSlice({
@@ -10,7 +10,7 @@ const blogSlice = createSlice({
       return action.payload.sort((a,b) =>  b.likes - a.likes);
     },
     addBlog: (state, action) => {
-      state.concat(action.payload);
+      return [...state, action.payload];
     },
     deleteBlog: (state, action) => {
       const newArray = state.filter(blog => blog.id !== action.payload.id);

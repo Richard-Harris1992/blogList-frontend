@@ -1,6 +1,6 @@
 import Toggleable from "./Toggleable"
 import BlogBody from "./BlogBody";
-
+import { Link } from "react-router-dom";
 
 const Blog = ({ blog, like, deleteBlog }) => {
   
@@ -15,7 +15,7 @@ const Blog = ({ blog, like, deleteBlog }) => {
   return(
   <div style={blogStyle}>
     <ul>
-      Title: {blog.title}<br/>
+      Title: <Link to={`/blogs/${blog.id}`} >{blog.title}</Link><br/>
       Author: {blog.author}<br/>
 
       <Toggleable view='View' hide='Hide'>

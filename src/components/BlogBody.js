@@ -2,10 +2,9 @@
 
 
 const BlogBody = ({ blog, addLike, deleteBlog }) => {
-
+    
     const clickLike = (e) => {
         e.preventDefault();
-        console.log(blog)
         const updateObj = {
             title: blog.title,
             author: blog.author,
